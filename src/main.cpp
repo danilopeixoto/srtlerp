@@ -25,13 +25,15 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+// USING SRTLERP TO SYNCHRONIZE SUBTITLES.
+
 #include "srtlerp.h"
 #include <iostream>
 
 SRTLERP_NAMESPACE_USING
 
 int main(int argc, char ** argv) {
-    FileDescriptor file("C:/Users/Danilo/Desktop/Projetos/srtlerp/input.srt");
+    FileDescriptor file("C:/input.srt");
 
     if (file.isOpen())
         std::cout << "Opening subtitle file..." << std::endl;
@@ -47,7 +49,7 @@ int main(int argc, char ** argv) {
 
     TimeInterval interval;
 
-    interval.start = Time(0, 0, 1, 950);
+    interval.start = Time(0, 0, 0, 0);
     interval.end = Time(1, 37, 29, 917);
 
     if (LinearInterpolation::interpolate(subtitles, interval))
@@ -55,7 +57,7 @@ int main(int argc, char ** argv) {
     else
         std::cout << "Cannot interpolate subtitles." << std::endl;
 
-    file.open("C:/Users/Danilo/Desktop/Projetos/srtlerp/output.srt");
+    file.open("C:/output.srt");
 
     if (file.isOpen())
         std::cout << "Saving subtitle file..." << std::endl;
