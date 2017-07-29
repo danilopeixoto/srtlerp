@@ -208,7 +208,7 @@ FileDescriptor & FileDescriptor::write(const SubtitleSequence & subtitleSequence
     UInt index = 0;
 
     while (it != subtitleSequence.end()) {
-        fstream << autoIndex ? Subtitle(++index, it->interval, it->content) : *it;
+        fstream << (autoIndex ? Subtitle(++index, it->interval, it->content) : *it);
 
         if (++it != subtitleSequence.end())
             fstream << std::endl << std::endl;
